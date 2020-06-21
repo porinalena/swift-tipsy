@@ -16,16 +16,27 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var tenPctButton: UIButton!
     @IBOutlet weak var twentyPctButton: UIButton!
     @IBOutlet weak var splitNumberLabel: UILabel!
+    @IBOutlet var buttons: [UIButton]!
     
     var tipPercentage: String!
     var tipWithoutPctSign: String!
+
+    func resetSelectedButtons() {
+        for button in buttons {
+            button.isSelected = false
+        }
+    }
     
     @IBAction func tipChanged(_ sender: UIButton) {
         sender.isSelected = true
+        resetSelectedButtons()
         
+        if !sender.isSelected {
+            sender.isSelected = true
+        }
+   
         tipPercentage = sender.titleLabel!.text
         tipWithoutPctSign = tipPercentage.replacingOccurrences(of: "%", with: "", options: NSString.CompareOptions.literal, range: nil)
-       
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -34,5 +45,6 @@ class CalculatorViewController: UIViewController {
     @IBAction func calculatePressed(_ sender: UIButton) {
          print(Float(tipWithoutPctSign)! / 100)
     }
+    
 }
 

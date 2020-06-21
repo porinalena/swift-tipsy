@@ -203,6 +203,9 @@
                         <outlet property="tenPctButton" destination="7y6-Kf-yF0" id="WhM-33-vR9"/>
                         <outlet property="twentyPctButton" destination="UtR-dU-EKt" id="GoD-sC-1x9"/>
                         <outlet property="zeroPctButton" destination="XzR-0E-Xf7" id="byy-dx-vri"/>
+                        <outletCollection property="buttons" destination="XzR-0E-Xf7" collectionClass="NSMutableArray" id="1yq-0T-tf3"/>
+                        <outletCollection property="buttons" destination="7y6-Kf-yF0" collectionClass="NSMutableArray" id="KAF-X8-bQF"/>
+                        <outletCollection property="buttons" destination="UtR-dU-EKt" collectionClass="NSMutableArray" id="59o-Fw-c8G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

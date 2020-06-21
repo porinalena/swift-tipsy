@@ -16,14 +16,23 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var tenPctButton: UIButton!
     @IBOutlet weak var twentyPctButton: UIButton!
     @IBOutlet weak var splitNumberLabel: UILabel!
-      
+    
+    var tipPercentage: String!
+    var tipWithoutPctSign: String!
+    
     @IBAction func tipChanged(_ sender: UIButton) {
+        sender.isSelected = true
+        
+        tipPercentage = sender.titleLabel!.text
+        tipWithoutPctSign = tipPercentage.replacingOccurrences(of: "%", with: "", options: NSString.CompareOptions.literal, range: nil)
+       
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
+         print(Float(tipWithoutPctSign)! / 100)
     }
 }
 

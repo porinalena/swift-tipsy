@@ -57,9 +57,7 @@ class CalculatorViewController: UIViewController {
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         print(splitNumberLabelValue)
-        print(Float(tipWithoutPctSign ?? "10") ?? 10.0 / Float(100))
-        print(10.0 / 100.0)
-         
+        print((Float(tipWithoutPctSign ?? "10") ?? 10.0) / 100)
     }
     
 }

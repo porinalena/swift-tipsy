@@ -18,8 +18,10 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var splitNumberLabel: UILabel!
     @IBOutlet var buttons: [UIButton]!
     
-    var tipPercentage: String!
-    var tipWithoutPctSign: String!
+    var tipPercentage: String?
+    var tipWithoutPctSign: String?
+    var stepperValue: Int?
+    var splitNumberLabelValue: Int? = 2
 
     func resetSelectedButtons() {
         for button in buttons {
@@ -36,14 +38,28 @@ class CalculatorViewController: UIViewController {
         }
    
         tipPercentage = sender.titleLabel!.text
-        tipWithoutPctSign = tipPercentage.replacingOccurrences(of: "%", with: "", options: NSString.CompareOptions.literal, range: nil)
+        tipWithoutPctSign = tipPercentage!.replacingOccurrences(of: "%", with: "", options: NSString.CompareOptions.literal, range: nil)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        splitNumberLabelValue = Int(splitNumberLabel.text ?? "2")
+        stepperValue = Int(sender.value)
+        
+        if stepperValue ?? 2 > splitNumberLabelValue ?? 2 {
+            splitNumberLabelValue! += 1
+            splitNumberLabel.text = String(splitNumberLabelValue!)
+        } else {
+            splitNumberLabelValue = splitNumberLabelValue! - 1
+            splitNumberLabel.text = String(splitNumberLabelValue!)
+        }
+        
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-         print(Float(tipWithoutPctSign)! / 100)
+        print(splitNumberLabelValue)
+        print(Float(tipWithoutPctSign ?? "10") ?? 10.0 / Float(100))
+        print(10.0 / 100.0)
+         
     }
     
 }

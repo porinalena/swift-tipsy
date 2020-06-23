@@ -22,6 +22,7 @@ class CalculatorViewController: UIViewController {
     var tipWithoutPctSign: String?
     var stepperValue: Int?
     var splitNumberLabelValue: Int? = 2
+    var total: Float?
 
     func resetSelectedButtons() {
         for button in buttons {
@@ -39,7 +40,7 @@ class CalculatorViewController: UIViewController {
    
         tipPercentage = sender.titleLabel!.text
         tipWithoutPctSign = tipPercentage!.replacingOccurrences(of: "%", with: "", options: NSString.CompareOptions.literal, range: nil)
-//        billTextField.endEditing(true)
+        billTextField.endEditing(true)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -60,9 +61,16 @@ class CalculatorViewController: UIViewController {
         let tipInDecimal = (Float(tipWithoutPctSign ?? "10") ?? 10.0) / 100
         let billTextFieldValue = Float(billTextField.text!)
         let tipCalculated = billTextFieldValue! * tipInDecimal
-        let result = (billTextFieldValue! + tipCalculated) / Float(splitNumberLabelValue!)
-        print(result)
+        total = (billTextFieldValue! + tipCalculated) / Float(splitNumberLabelValue!)
+        print(total)
+        performSegue(withIdentifier: "goToResult", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if segue.identifier == "goToResult" {
+               let destinationVC = segue.destination as! ResultViewController
+           }
+       }
     
 }
 

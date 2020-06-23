@@ -39,6 +39,7 @@ class CalculatorViewController: UIViewController {
    
         tipPercentage = sender.titleLabel!.text
         tipWithoutPctSign = tipPercentage!.replacingOccurrences(of: "%", with: "", options: NSString.CompareOptions.literal, range: nil)
+//        billTextField.endEditing(true)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
@@ -56,8 +57,11 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        print(splitNumberLabelValue)
-        print((Float(tipWithoutPctSign ?? "10") ?? 10.0) / 100)
+        let tipInDecimal = (Float(tipWithoutPctSign ?? "10") ?? 10.0) / 100
+        let billTextFieldValue = Float(billTextField.text!)
+        let tipCalculated = billTextFieldValue! * tipInDecimal
+        let result = (billTextFieldValue! + tipCalculated) / Float(splitNumberLabelValue!)
+        print(result)
     }
     
 }
